@@ -3,51 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unduh Video atau Musik TikTok</title>
+    <title>Downloader Video YouTube</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            background-color: #00E5FF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            color: #333;
-        }
- 
-
-            nav ul.active {
-                transform: translateY(0);
-            }
-            nav ul li {
-                text-align: center;
-                margin: 10px 0;
-            }
-        
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-top: 80px; /* Adjusted to account for fixed header */
         }
         .container {
-            max-width: 600px;
-            margin: 20px auto;
-            background: rgba(255, 255, 255, 0.9);
+            background-color: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
         }
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
+            color: #555;
         }
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        select {
+        input[type="text"], select {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -57,110 +41,122 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
-            color: white;
+            background-color: #007bff;
+            color: #fff;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #0056b3;
         }
-        .error {
+        .error-message {
             color: red;
-            font-size: 14px;
-            margin-top: -15px;
-            margin-bottom: 15px;
+            display: none;
+            margin-top: 10px;
         }
-        footer {
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
+        .contact-info {
             margin-top: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        footer p {
-            line-height: 1.6;
-        }
-        section#about {
-            margin-top: 40px;
-            text-align: center;
-        }
-        section#about ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        section#about ul li {
-            margin: 5px 0;
+            font-size: 0.9em;
+            color: #777;
         }
     </style>
 </head>
 <body>
-
-    <h1>Unduh Video atau Musik TikTok</h1>
     <div class="container">
+        <h1>Downloader Video YouTube</h1>
         <form id="downloadForm">
-            <label for="tiktok-url">URL TikTok:</label>
-            <input type="text" id="tiktok-url" required><br>
+            <label for="video-url">URL Video:</label>
+            <input type="text" id="video-url" required>
 
-            <label for="format">Pilih Format:</label>
-            <select id="format" required>
-                <option value="" disabled selected>Pilih Format</option>
-                <option value="mp4">Video (MP4)</option>
-                <option value="mp3">Audio (MP3)</option>
-            </select><br>
+            <label for="format">Format:</label>
+            <select id="format">
+                <option value="mp4">MP4</option>
+                <option value="mp3">MP3</option>
+            </select>
 
             <button type="submit">Unduh</button>
-            <p class="error" id="errorMessage" style="display:none;"></p>
+            <p class="error-message" id="errorMessage"></p>
         </form>
+        <div class="contact-info">
+            <p>Jika menemukan bug atau membutuhkan bantuan, hubungi kami:</p>
+            <p>Email: sanzzgo00@gmail.com</p>
+            <p>Nomor: +62 857 1243 8923</p>
+        </div>
     </div>
 
-    <footer>
-        <h2>Cara Penggunaan</h2>
-        <p>
-            
-            1. Masukkan URL video TikTok yang ingin Anda unduh.<br>
-              jenis URL yang didukung 
-               •https://www.tiktok.com/@username/video/{VIDEO_ID}
-               •https://vm.tiktok.com/{VIDEO_ID}
-               •https://vt.tiktok.com/{VIDEO_IF}<br>
-            2. Pilih format output yang diinginkan (Video MP4 atau Audio MP3).<br>
-            3. Klik tombol "Unduh" untuk memulai proses unduhan.<br>
-            4. Tunggu beberapa saat hingga file siap untuk diunduh.
-        </p>
-    </footer>
-
-    <section id="about">
-        <h2>Tentang Saya</h2>
-        <p>Selamat datang di situs saya! Aku adalah seorang NPC yang sedang belajar teknologi.jadi maklumi aja kalo banyak kekurangan-kekurangan</p>
-        <ul>
-            <li>Email: sanzzgo00@gmail.com</li>
-            <li>Telepon: +62 857 1243 8923</li>
-        </ul>
-    </section>
-
     <script>
+        // Fungsi untuk memvalidasi URL YouTube
+        function isValidYouTubeUrl(url) {
+            const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+            console.log('Mencoba memvalidasi URL:', url);
+            if (youtubeRegex.test(url)) {console.log('URL YouTube valid:', url);
+                return true;
+            } else {
+                console.log('URL YouTube tidak valid:', url);
+                return false;
+            }
+        }
+
         document.getElementById('downloadForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const tiktokUrl = document.getElementById('tiktok-url').value.trim();
+            
+            // Menampilkan nilai form saat ini
+            console.log('Video URL:', document.getElementById('video-url').value.trim());
+            console.log('Format:', document.getElementById('format').value);
+
+            const videoUrl = document.getElementById('video-url').value.trim();
             const format = document.getElementById('format').value;
 
-            if (!tiktokUrl || !format) {
-                document.getElementById('errorMessage').textContent = 'Mohon isi URL TikTok dan pilih format!';
+            if (!videoUrl || !format) {
+                console.log('Field kosong ditemukan');
+                document.getElementById('errorMessage').textContent = 'Mohon isi semua field!';
                 document.getElementById('errorMessage').style.display = 'block';
                 return;
             }
 
-            const endpoint = `https://tools.opslinuxsec.com/ttdl/download.php?url=${encodeURIComponent(tiktokUrl)}&format=${format}`;
-            window.location.href = endpoint;
-            document.getElementById('errorMessage').style.display = 'none';
+            // Validasi URL YouTube
+            if (!isValidYouTubeUrl(videoUrl)) {
+                document.getElementById('errorMessage').textContent = 'URL YouTube tidak valid. Pastikan URL berawal dengan https://www.youtube.com/ atau https://youtu.be/';
+                document.getElementById('errorMessage').style.display = 'block';
+                return;
+            }
+
+            // Endpoint API untuk mengunduh video YouTube
+            const endpoint = `https://tools.opslinuxsec.com/ytdl/download.php?format=${format}&url=${encodeURIComponent(videoUrl)}`;
+
+            console.log('Endpoint:', endpoint);
+
+            // Menggunakan fetch API dengan penanganan kesalahan yang lebih detail
+            fetch(endpoint, { method: 'GET', mode: 'cors' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Gagal mendapatkan respons dari server: ${response.statusText}`);
+                    }
+                    return response.json(); // Asumsikan server mengembalikan JSON
+                })
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    console.log('Data diterima dari server:', data);
+                    window.location.href = data.download_url || endpoint; // Asumsikan server mengembalikan URL unduhan
+                    document.getElementById('errorMessage').style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Terjadi kesalahan:', error);
+                    document.getElementById('errorMessage').textContent = 'Terjadi kesalahan saat mengunduh video. Silakan coba lagi nanti.';
+                    document.getElementById('errorMessage').style.display = 'block';
+
+                    // Mencari solusi online jika diperlukan
+                    googleSearch("masalah dengan downloader video YouTube");
+                });
         });
 
-        function toggleMenu() {
-            const menu = document.getElementById('menu');
-            menu.classList.toggle('active');
+        // Fungsi untuk mencari informasi tambahan di internet
+        function googleSearch(query) {
+            const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            window.open(searchUrl, '_blank');
         }
     </script>
 </body>
